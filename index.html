@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Podium</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1edf9;--sf:#fffdfa;--tx:#1d1a3a;--mu:#5f5a82;--ac:#946a14;--ac2:#0f7a73;--c3:#b0305f;--c4:#5b3fb0;--ln:#d8d0ec;--onac:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1024;--sf:#1a1838;--tx:#efeaf8;--mu:#a8a3c9;--ac:#e2b45a;--ac2:#7ee0d0;--c3:#e06b9a;--c4:#8f7dff;--ln:#342f63}}
+:root[data-theme="dark"]{--bg:#0f1024;--sf:#1a1838;--tx:#efeaf8;--mu:#a8a3c9;--ac:#e2b45a;--ac2:#7ee0d0;--c3:#e06b9a;--c4:#8f7dff;--ln:#342f63}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(60% 40% at 8% 0%,color-mix(in srgb,var(--c4) 30%,transparent),transparent),radial-gradient(50% 40% at 100% 22%,color-mix(in srgb,var(--ac2) 20%,transparent),transparent),radial-gradient(70% 45% at 50% 100%,color-mix(in srgb,var(--c3) 22%,transparent),transparent),var(--bg);background-attachment:fixed;min-height:100vh;color:var(--tx);font:16px/1.55 "Public Sans",system-ui,sans-serif}
+main{max-width:600px;margin:0 auto;padding:0 16px 48px}
+h1,h2,.serif{font-family:"Cormorant Garamond",Georgia,serif}
+header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid var(--ln);margin-bottom:22px}
+.credit{font-size:13px;color:var(--mu);line-height:1.3}.credit b{color:var(--tx);font-weight:600;display:block}
+nav{display:flex;gap:4px}
+nav button{background:none;border:0;border-bottom:2px solid transparent;color:var(--mu);padding:6px 10px;font:600 14px "Public Sans",sans-serif;cursor:pointer}
+nav button.on{color:var(--tx);border-color:var(--ac)}
+h1{font-size:40px;line-height:1;margin:0 0 4px;font-weight:700}
+.sub{color:var(--mu);margin:0 0 20px}
+.steps{display:flex;gap:6px;margin-bottom:16px;font-size:13px;color:var(--mu)}
+.steps span{flex:1;padding-top:6px;border-top:3px solid var(--ln)}
+.steps span.on{border-color:var(--ac);color:var(--tx);font-weight:600}
+.card{position:relative;overflow:hidden;background:var(--sf);border:1px solid var(--ln);border-radius:6px;padding:22px;margin-bottom:16px}
+.card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--c4),var(--ac2),var(--ac),var(--c3))}
+.steps span.on:nth-child(1){border-color:var(--c4)}.steps span.on:nth-child(2){border-color:var(--ac2)}.steps span.on:nth-child(3){border-color:var(--ac)}.steps span.on:nth-child(4){border-color:var(--c3)}
+.credit a{color:var(--ac2);font-size:13px}
+.bar:nth-child(1) b{background:var(--c4)}.bar:nth-child(2) b{background:var(--ac2)}.bar:nth-child(3) b{background:var(--ac)}.bar:nth-child(4) b{background:var(--c3)}
+.btn{width:100%;background:linear-gradient(120deg,#6a3fb5,#b0305f 58%,#c98a1b);color:#fff;border:0;border-radius:4px;padding:14px;font:600 16px "Public Sans",sans-serif;cursor:pointer}
+.btn.ghost{background:none;border:1px solid var(--ln);color:var(--tx);font-weight:400;font-size:14px;margin-top:10px;padding:10px}
+.btn:disabled{opacity:.5}
+button:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--ac2);outline-offset:2px}
+.reel{position:relative;height:200px;margin:0 0 18px;border:1px solid var(--ln);border-radius:4px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 14px;text-align:center;-webkit-mask-image:linear-gradient(transparent,#000 26%,#000 74%,transparent);mask-image:linear-gradient(transparent,#000 26%,#000 74%,transparent)}
+.band{position:absolute;left:0;right:0;top:50%;height:72px;transform:translateY(-50%);border-top:1px solid var(--ac);border-bottom:1px solid var(--ac)}
+.rl{position:relative;font-family:"Cormorant Garamond",Georgia,serif;font-size:19px;color:var(--mu);opacity:.6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;height:26px}
+.rl.cur{font-size:30px;font-weight:700;color:var(--tx);opacity:1;height:72px;display:flex;align-items:center;justify-content:center;white-space:normal;line-height:1.05}
+.reel.done .cur{color:var(--ac);animation:pop .5s}
+@keyframes pop{40%{transform:scale(1.06)}}
+.placard{border-left:4px solid var(--ac);padding:2px 0 2px 16px;margin-bottom:18px}
+.placard small{color:var(--mu);font-size:13px}
+.placard h2{font-size:36px;line-height:1.05;margin:2px 0 6px}
+.placard p{margin:0;color:var(--mu)}
+.dial{--p:1;width:210px;height:210px;margin:6px auto 12px;border-radius:50%;background:conic-gradient(var(--ac) calc(var(--p)*360deg),var(--ln) 0);display:grid;place-items:center}
+.dial>div{width:190px;height:190px;border-radius:50%;background:var(--sf);display:grid;place-items:center;font:700 54px "Cormorant Garamond",Georgia,serif;font-variant-numeric:tabular-nums}
+.dial.warn>div{color:var(--ac)}
+.hint{color:var(--mu);text-align:center;margin:0 0 14px;font-size:14px}
+textarea{width:100%;min-height:140px;background:var(--bg);color:var(--tx);border:1px solid var(--ln);border-radius:4px;padding:12px;font:15px/1.5 "Public Sans",sans-serif;resize:vertical;margin-top:12px}
+select{background:var(--bg);color:var(--tx);border:1px solid var(--ln);border-radius:4px;padding:6px;font:14px "Public Sans",sans-serif}
+.lang{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mu);margin-bottom:12px}
+.rec{display:inline-block;width:10px;height:10px;border-radius:50%;background:#d6342c;margin-right:6px;animation:p 1s infinite}
+@keyframes p{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.rec,.reel.done .cur{animation:none}}
+.score{font:700 72px/1 "Cormorant Garamond",Georgia,serif;text-align:center}.score small{font-size:26px;color:var(--mu)}
+.bar{display:flex;align-items:center;gap:10px;margin:6px 0;font-size:14px}.bar span:first-child{width:80px;color:var(--mu)}
+.bar i{flex:1;height:6px;background:var(--bg);overflow:hidden}.bar b{display:block;height:100%;background:var(--ac)}
+.pts h3{font-size:15px;margin:16px 0 4px}.pts ul{margin:0;padding-left:20px;font-size:15px}
+.ok li::marker{color:#2f9e44}.no li::marker{color:#d6342c}
+details.hi{border-top:1px solid var(--ln);padding:12px 0}details.hi:first-child{border-top:0}
+.hi summary{cursor:pointer;display:flex;justify-content:space-between;gap:10px}.hi .num{color:var(--ac);font-weight:600}
+.hi p{margin:8px 0 0;font-size:14px;color:var(--mu)}
+.stats{display:flex;gap:10px;margin-bottom:14px}.stats div{flex:1;text-align:center;background:var(--sf);border:1px solid var(--ln);border-radius:4px;padding:10px;font-size:13px;color:var(--mu)}
+.stats .num{font:700 30px "Cormorant Garamond",serif;display:block;color:var(--tx)}
+.hide{display:none}.err{color:#d6342c;font-size:14px}
+</style></head>
+<body><main>
+<header>
+ <div class="credit">Produced by<b>Rafay Baloch</b><a href="https://www.instagram.com/rfy_observes" target="_blank" rel="noopener noreferrer">@rfy_observes on Instagram</a></div>
+ <nav><button id="tPlay" class="on">Session</button><button id="tHist">Record</button></nav>
+</header>
+
+<section id="play">
+ <h1>The Podium</h1>
+ <p class="sub">A topic is assigned. You prepare, then address the room.</p>
+ <div class="steps" id="steps"><span class="on">Assignment</span><span>Preparation</span><span>Address</span><span>Assessment</span></div>
+
+ <div id="sSpin" class="card">
+  <div class="reel" id="reel" aria-live="polite"><div class="band"></div><div class="rl" id="rPrev"></div><div class="rl cur" id="rCur">Awaiting assignment</div><div class="rl" id="rNext"></div></div>
+  <button class="btn" id="spinBtn">Assign my topic</button>
+  <button class="btn ghost" id="sndBtn">Sound: on</button>
+ </div>
+
+ <div id="sTopic" class="card hide">
+  <div class="placard"><small>Your assigned topic</small><h2 id="tName"></h2><p id="tBlurb"></p></div>
+  <div class="dial" id="rDial"><div id="rTimer">10:00</div></div>
+  <p class="hint" id="rHint">Ten minutes to research. The clock starts when you press begin.</p>
+  <button class="btn" id="rStart">Begin preparation</button>
+  <button class="btn ghost" id="rSkip">Go to the podium now</button>
+ </div>
+
+ <div id="sSpeak" class="card hide">
+  <div class="placard"><small>At the podium</small><h2 id="sName"></h2></div>
+  <div class="dial" id="sDial"><div id="sTimer">1:00</div></div>
+  <p class="hint" id="sHint">Turn on the microphone, then begin. You have one minute.</p>
+  <div class="lang"><label for="lang">Speaking language</label><select id="lang"><option value="en-US">English (US)</option><option value="en-GB">English (UK)</option><option value="en-IN">English (India)</option><option value="en-AU">English (Australia)</option></select></div>
+  <button class="btn ghost" id="micBtn" style="margin:0 0 10px">Turn on microphone</button>
+  <button class="btn" id="sStart">Begin address</button>
+  <textarea id="tx" class="hide" aria-label="Transcript" placeholder="Your words appear here. Fix anything before it is assessed."></textarea>
+  <button class="btn ghost hide" id="sDone">Conclude and assess</button>
+ </div>
+
+ <div id="sRes" class="card hide">
+  <div class="score"><span id="rScore">0</span><small>/10</small></div>
+  <div id="rBars" style="margin:14px 0"></div>
+  <p id="rFb"></p><p id="rTip" style="color:var(--mu)"></p>
+  <div class="pts" id="rPts"></div>
+  <details class="hi" id="rCl"><summary>What the assessor understood you said</summary><p id="rClt"></p></details>
+  <p id="rErr" class="err"></p>
+  <button class="btn" id="again">Next topic</button>
+ </div>
+</section>
+
+<section id="hist" class="hide">
+ <div class="stats"><div><span class="num" id="hN">0</span>sessions</div><div><span class="num" id="hA">–</span>average</div><div><span class="num" id="hB">–</span>best</div></div>
+ <div class="card" id="hList"></div>
+ <button class="btn ghost" id="clr">Clear record</button>
+</section>
+</main>
+<script>
+const POOL=[["The Trolley Problem","Is it right to sacrifice one to save many?"],["Cognitive Dissonance","The discomfort of holding conflicting beliefs."],["Existentialism","Existence precedes essence: we make our own meaning."],["The Dunning-Kruger Effect","Why the least skilled can overrate themselves."],["Stoicism","Control what you can; accept what you can't."],["The Ship of Theseus","What keeps something the same over time?"],["Confirmation Bias","We favor information that fits what we already believe."],["Free Will vs Determinism","Are our choices truly ours?"],["Maslow's Hierarchy of Needs","Do needs stack in a fixed order?"],["The Veil of Ignorance","Designing a fair society without knowing your place in it."],["Attachment Theory","How early bonds shape adult relationships."],["Absurdism","Facing a meaningless universe with defiance."],["The Bystander Effect","Why people help less when others are present."],["Plato's Allegory of the Cave","Shadows, reality and the pain of enlightenment."],["Learned Helplessness","When repeated failure teaches us to stop trying."],["Utilitarianism","Judge actions by the happiness they produce."],["The Shadow (Jung)","The parts of ourselves we deny."],["Nihilism","What if nothing has inherent meaning?"],["The Stanford Prison Experiment","Roles, power and what it did and didn't prove."],["Kant's Categorical Imperative","Act only on rules you could make universal."],["Flow State","Total absorption in a challenging task."],["The Mind-Body Problem","How does consciousness arise from matter?"],["Self-Fulfilling Prophecy","Expectations that cause their own outcomes."],["Virtue Ethics","Ethics as character, not rules or outcomes."],["The Halo Effect","One good trait colours our whole impression."],["Solipsism","Can I be sure any mind exists but mine?"],["Operant Conditioning","Behaviour shaped by rewards and punishment."],["Authenticity (Sartre)","Bad faith and living as your real self."],["Hedonic Adaptation","Why we return to baseline after highs and lows."],["Taoism and Wu Wei","Effortless action in harmony with nature."]];
+const $=id=>document.getElementById(id);
+const ls={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let cur=null,tick=null,rec=null,spoken=0,busy=false,micOk=false,audio=null,snd=true;
+const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+const ORDER=['sSpin','sTopic','sSpeak','sRes'];
+function show(id){ORDER.forEach(x=>$(x).classList.toggle('hide',x!==id));[...$('steps').children].forEach((el,i)=>el.classList.toggle('on',i===ORDER.indexOf(id)))}
+function ac(){try{if(!audio)audio=new (window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();return audio}catch(e){return null}}
+function tone(f,d,type,v,t0){const a=ac();if(!a||!snd)return;const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.value=f;const t=a.currentTime+(t0||0);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+d+.02)}
+const tickSnd=p=>tone(420+p*520,.05,'square',.05),winSnd=()=>{tone(523,.25,'sine',.15);tone(659,.25,'sine',.15,.12);tone(784,.55,'sine',.15,.24)};
+function setReel(i){const n=POOL.length;$('rPrev').textContent=POOL[(i-1+n)%n][0];$('rCur').textContent=POOL[i][0];$('rNext').textContent=POOL[(i+1)%n][0]}
+$('sndBtn').onclick=()=>{snd=!snd;$('sndBtn').textContent='Sound: '+(snd?'on':'off')};
+$('spinBtn').onclick=()=>{
+ if(busy)return;busy=true;$('spinBtn').disabled=true;ac();$('reel').classList.remove('done');
+ const n=POOL.length,steps=36,fin=Math.floor(Math.random()*n);let seq=[];
+ while(seq.length<steps-1)seq.push(...[...Array(n).keys()].sort(()=>Math.random()-.5));
+ seq=seq.slice(0,steps-1);if(seq[steps-2]===fin)seq[steps-2]=(fin+7)%n;seq.push(fin);
+ let i=0;
+ const step=()=>{setReel(seq[i]);
+  if(i===steps-1){winSnd();$('reel').classList.add('done');
+   setTimeout(()=>{cur=POOL[fin];$('tName').textContent=cur[0];$('tBlurb').textContent=cur[1];dial('rDial',1);$('rTimer').textContent='10:00';
+    $('rStart').classList.remove('hide');$('rSkip').classList.remove('hide');$('rHint').textContent='Ten minutes to research. The clock starts when you press begin.';
+    show('sTopic');busy=false;$('spinBtn').disabled=false},1400);return}
+  tickSnd(i/steps);const d=45+480*Math.pow(i/(steps-1),3);i++;setTimeout(step,d)};
+ step();
+};
+function dial(id,p,warn){const d=$(id);d.style.setProperty('--p',p);d.classList.toggle('warn',!!warn)}
+function countdown(sec,did,tid,done){
+ const end=Date.now()+sec*1000;clearInterval(tick);
+ const f=()=>{const left=Math.max(0,Math.ceil((end-Date.now())/1000));$(tid).textContent=fmt(left);dial(did,(end-Date.now())/(sec*1000)>0?Math.max(0,(end-Date.now())/(sec*1000)):0,left<=10);if(left<=0){clearInterval(tick);done()}};
+ f();tick=setInterval(f,250);
+}
+function beep(){tone(660,.5,'sine',.2)}
+$('rStart').onclick=()=>{$('rStart').classList.add('hide');$('rHint').textContent='Preparation in progress. When the clock ends you take the podium.';countdown(600,'rDial','rTimer',()=>{beep();toSpeak()})};
+$('rSkip').onclick=()=>{clearInterval(tick);toSpeak()};
+function toSpeak(){
+ $('sName').textContent=cur[0];dial('sDial',1);$('sTimer').textContent='1:00';
+ $('sStart').classList.remove('hide');$('micBtn').classList.toggle('hide',micOk);$('tx').classList.add('hide');$('tx').value='';$('sDone').classList.add('hide');
+ $('sHint').textContent='Turn on the microphone, then begin. You have one minute.';show('sSpeak');
+}
+const MIC_HELP=' You can still type, or use the microphone key on your keyboard while the text box is selected.';
+$('micBtn').onclick=async()=>{
+ const h=$('sHint');
+ try{if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)throw {name:'Unsupported'};
+  const st=await navigator.mediaDevices.getUserMedia({audio:true});st.getTracks().forEach(t=>t.stop());micOk=true;
+  h.textContent='Microphone is on. Press begin when ready.';$('micBtn').classList.add('hide');
+ }catch(e){const n=e&&e.name;
+  h.textContent=(n==='NotAllowedError'||n==='SecurityError'?'The microphone is blocked. Allow it in your browser\u2019s site settings, or open this page directly in Chrome or Safari (not inside another app). It may also be blocked by the page frame here.':n==='NotFoundError'?'No microphone was found on this device.':'This browser cannot use the microphone on this page.')+MIC_HELP}
+};
+const L=ls.get('mindspin_lang');if(L)$('lang').value=L;$('lang').onchange=()=>ls.set('mindspin_lang',$('lang').value);
+$('sStart').onclick=()=>{
+ $('sStart').classList.add('hide');$('tx').classList.remove('hide');$('sDone').classList.remove('hide');spoken=Date.now();
+ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(SR){try{rec=new SR();rec.continuous=true;rec.interimResults=true;rec.lang=$('lang').value;
+   rec.onresult=e=>{let f='',t='';for(let i=0;i<e.results.length;i++){e.results[i].isFinal?(f+=e.results[i][0].transcript+' '):(t+=e.results[i][0].transcript)}$('tx').value=f+t};
+   rec.onerror=e=>{$('sHint').textContent=(e.error==='not-allowed'||e.error==='service-not-allowed'?'The microphone is blocked. Press Turn on microphone, or allow it in your browser settings.':e.error==='no-speech'?'No speech heard yet. Check your microphone.':'Speech recognition error ('+e.error+').')+MIC_HELP;if(e.error==='not-allowed')$('micBtn').classList.remove('hide')};
+   rec.onend=()=>{if(rec&&rec.keep)try{rec.start()}catch(e){}};
+   rec.keep=true;rec.start();$('sHint').innerHTML='<span class="rec"></span>Listening. Address the room.';
+  }catch(e){$('sHint').textContent='Speech recognition failed to start. Type your address instead.'}
+ }else $('sHint').textContent='This browser has no speech recognition. Type your address instead.';
+ countdown(60,'sDial','sTimer',finish);
+};
+$('sDone').onclick=()=>{clearInterval(tick);finish()};
+const li=a=>'<ul>'+(a||[]).map(x=>'<li>'+String(x).replace(/</g,'&lt;')+'</li>').join('')+'</ul>';
+function pts(e){return (e.cov&&e.cov.length?'<div class="ok"><h3>Points you covered</h3>'+li(e.cov)+'</div>':'')+(e.mis&&e.mis.length?'<div class="no"><h3>Key points you missed</h3>'+li(e.mis)+'</div>':'')}
+async function finish(){
+ clearInterval(tick);if(rec){rec.keep=false;try{rec.stop()}catch(e){}rec=null}
+ const text=$('tx').value.trim(),secs=Math.min(60,Math.round((Date.now()-spoken)/1000));
+ show('sRes');$('rErr').textContent='';$('rBars').innerHTML='';$('rPts').innerHTML='';$('rCl').classList.add('hide');$('rFb').textContent='Assessing your address…';$('rTip').textContent='';$('rScore').textContent='–';$('again').disabled=true;
+ const entry={t:cur[0],d:Date.now(),text,secs};
+ if(text.split(/\s+/).filter(Boolean).length<5){entry.s=0;entry.fb='Almost nothing was said, so there was nothing to assess.';entry.tip='Speak for the full minute next time.';entry.dim={}}
+ else{try{
+   const resp=await fetch('/api/score',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({topic:cur[0],blurb:cur[1],secs:secs,text:text})});if(!resp.ok)throw new Error('Scoring service error ('+resp.status+')');const r=await resp.json();
+   entry.s=Math.max(0,Math.min(10,+r.score||0));entry.fb=r.feedback||'';entry.tip=r.tip||'';entry.cl=r.clean||'';entry.cov=r.covered||[];entry.mis=r.missed||[];
+   entry.dim={Accuracy:r.accuracy,Depth:r.depth,Clarity:r.clarity,Examples:r.examples};
+  }catch(e){entry.s=null;$('rErr').textContent='Could not assess this one: '+(e&&e.message?e.message:'unknown error')+'. It was still saved.'}}
+ const h=ls.get('mindspin')||[];h.unshift(entry);ls.set('mindspin',h.slice(0,200));
+ $('rScore').textContent=entry.s==null?'–':entry.s;$('rFb').textContent=entry.fb||'';$('rTip').textContent=entry.tip?'Next time: '+entry.tip:'';
+ $('rBars').innerHTML=Object.entries(entry.dim||{}).map(([k,v])=>'<div class="bar"><span>'+k+'</span><i><b style="width:'+(Math.max(0,Math.min(10,+v||0))*10)+'%"></b></i></div>').join('');
+ $('rPts').innerHTML=pts(entry);if(entry.cl){$('rClt').textContent=entry.cl;$('rCl').classList.remove('hide')}
+ $('again').disabled=false;
+}
+$('again').onclick=()=>{$('reel').classList.remove('done');$('rPrev').textContent='';$('rNext').textContent='';$('rCur').textContent='Awaiting assignment';show('sSpin')};
+function renderHist(){
+ const h=ls.get('mindspin')||[],sc=h.filter(x=>x.s!=null&&x.text).map(x=>x.s);
+ $('hN').textContent=h.length;$('hA').textContent=sc.length?(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(1):'–';$('hB').textContent=sc.length?Math.max(...sc):'–';
+ const box=$('hList');box.textContent='';
+ if(!h.length){box.textContent='No sessions yet. Assign a topic to begin.';return}
+ h.forEach(x=>{const d=document.createElement('details');d.className='hi';
+  const s=document.createElement('summary'),a=document.createElement('span'),b=document.createElement('span');
+  a.textContent=x.t+' · '+new Date(x.d).toLocaleDateString();b.className='num';b.textContent=x.s==null?'–':x.s+'/10';s.append(a,b);d.append(s);
+  [x.fb,x.tip?'Tip: '+x.tip:'',x.mis&&x.mis.length?'Missed: '+x.mis.join('; '):'',x.cl||x.text?'You said: '+(x.cl||x.text):''].filter(Boolean).forEach(t=>{const p=document.createElement('p');p.textContent=t;d.append(p)});
+  box.append(d)});
+}
+function tab(p){$('play').classList.toggle('hide',!p);$('hist').classList.toggle('hide',p);$('tPlay').classList.toggle('on',p);$('tHist').classList.toggle('on',!p);if(!p)renderHist()}
+$('tPlay').onclick=()=>tab(true);$('tHist').onclick=()=>tab(false);
+$('clr').onclick=()=>{if(confirm('Delete all saved sessions?')){ls.set('mindspin',[]);renderHist()}};
+</script></body></html>
